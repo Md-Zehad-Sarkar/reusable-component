@@ -14,7 +14,7 @@ type TModal = {
   children: ReactNode;
 };
 type TCloseButton = {
-  children: ReactNode;
+  children?: ReactNode;
 };
 type THeader = TCloseButton;
 type TModalContext = {

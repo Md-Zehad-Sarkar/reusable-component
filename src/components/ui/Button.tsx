@@ -3,7 +3,8 @@ import cn from "../../utilities/cn";
 
 type TVariant = "solid" | "outline" | "slate";
 type TButtonOptions = {
-  variant: TVariant;
+  variant?: TVariant;
+  type?: "submit" | "reset";
 };
 type TButton = DetailedHTMLProps<
   HTMLAttributes<HTMLButtonElement>,
@@ -12,7 +13,7 @@ type TButton = DetailedHTMLProps<
   TButtonOptions;
 type TRef = HTMLButtonElement;
 const Button = forwardRef<TRef, TButton>(
-  ({ className, variant = "solid",children, ...rest }, ref) => {
+  ({ className, type, variant = "solid", children, ...rest }, ref) => {
     const getVariant = (variant: TVariant) => {
       switch (variant) {
         case "outline":
@@ -26,11 +27,12 @@ const Button = forwardRef<TRef, TButton>(
     };
     return (
       <button
+        type={type}
         ref={ref}
         {...rest}
         className={cn("btn", getVariant(variant), className)}
       >
-       {children}
+        {children}
       </button>
     );
   }
